@@ -35,7 +35,7 @@ function classNames(...classes: string[]) {
  * This is a stock component from https://tailwindui.com/components/application-ui/application-shells/sidebar and will be customized 
  * later after framing
  */
-export default () => {
+const Sidebar = () => {
   return (
     <nav className="flex flex-1 flex-col">
       <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -106,3 +106,5 @@ export default () => {
     </nav>
   )
 }
+
+export default Sidebar;
