@@ -1,4 +1,4 @@
- import Sidebar from '@/app/ui/dashboard/sidebar';
+ import Sidebar from '@/app/ui/sidebar/sidebar';
 
 /**
  * 
