@@ -14,8 +14,8 @@ import {
 
 
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
-  { name: 'Team', href: '/dashboard/team', icon: UsersIcon },
+  { name: 'Dashboard', href: '/e3/dashboard', icon: HomeIcon },
+  { name: 'Team', href: '/e3/team', icon: UsersIcon },
   { name: 'Projects', href: '#', icon: FolderIcon },
   { name: 'Calendar', href: '#', icon: CalendarIcon },
   { name: 'Documents', href: '#', icon: DocumentDuplicateIcon },
