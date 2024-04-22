@@ -34,3 +34,36 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Database
+[Here is a great article] (https://www.codementor.io/@engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb)
+install postgres for development
+```bash
+brew install postgresql
+```
+
+Ensure it runs on startup (if you want)
+```bash
+brew services start postgresql@14
+```
+
+create the development user and database
+```bash
+createuser local_dev --createdb
+createdb e3_virtualizer -U local_dev
+```
+
+push the schema to your database
+```bash
+npx prisma db push
+```
+
+run the seeder
+```bash
+node seed.mjs
+```
+
+view the data in app OR 
+```bash 
+npx prisma studio
+```
