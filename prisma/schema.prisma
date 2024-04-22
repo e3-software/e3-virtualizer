@@ -18,3 +18,8 @@ model User {
   email   String   @unique
   name    String?
 }
+
+model Organization {
+  id      Int      @id @default(autoincrement())
+  name    String
+}
