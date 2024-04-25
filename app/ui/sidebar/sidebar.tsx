@@ -12,7 +12,6 @@ import {
   UsersIcon,
 } from '@heroicons/react/24/outline'
 
-
 const navigation = [
   { name: 'Dashboard', href: '/e3/dashboard', icon: HomeIcon },
   { name: 'Team', href: '/e3/team', icon: UsersIcon },
@@ -97,28 +96,6 @@ const Teams = () => {
 }
 
 /**
- * 
- * @returns Profile popover link at bottom of sidebar
- */
-const Profile = () => {
-  return (
-    <Link
-      href="#"
-      className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-astral-700"
-    >
-      <img
-        className="h-8 w-8 rounded-full bg-astral-700"
-        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-        alt=""
-      />
-      <span className="sr-only">Your profile</span>
-      <span aria-hidden="true">Tom Cook</span>
-    </Link>
-  )
-}
-
-
-/**
  * This is a stock component from https://tailwindui.com/components/application-ui/application-shells/sidebar and will be customized 
  * later after framing
  * Main Sidebar container.
@@ -132,9 +109,6 @@ const Sidebar = () => {
         </li>
         <li>
           <Teams />
-        </li>
-        <li className="-mx-6 mt-auto">
-          <Profile />
         </li>
       </ul>
     </nav>
