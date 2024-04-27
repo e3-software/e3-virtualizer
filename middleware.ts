@@ -5,6 +5,7 @@ import {
 
 const isProtectedRoute = createRouteMatcher([
   '/e3(.*)',
+  
 ]);
 
 export default clerkMiddleware((auth, req) => {
