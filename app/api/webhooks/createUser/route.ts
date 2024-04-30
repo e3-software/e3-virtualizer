@@ -54,6 +54,7 @@ export const POST = async (req: Request) => {
   try {
     evt = await WebhookValidator(req);
   } catch (exception: any) {
+    console.log(exception.message)
     return new Response(exception.message, { status: 400 }) 
   }
   
