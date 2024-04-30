@@ -84,3 +84,8 @@ export const POST = async (req: Request) => {
 
   return new Response('', { status: 200 })
 }
+
+export const GET = async (req: Request) => {
+  console.log('yaught')
+  return new Response('FOUND', { status: 200 })
+}
