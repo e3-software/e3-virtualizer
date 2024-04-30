@@ -81,6 +81,8 @@ export const POST = async (req: Request) => {
       return new Response(exc.message, { status: 500 }) 
     }
     
+  } else {
+    return new Response('Missing Information', { status: 400 }) 
   }
 
   return new Response('', { status: 200 })
