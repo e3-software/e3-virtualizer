@@ -9,7 +9,10 @@ npm install
 
 You'll need a .env file which will not be committed to the repo since it contains secrets. Get that from a coworker.
 
-## Database
+## Database Brew or DOCKER
+I prefer docker
+
+### Brew
 [Here is a great article] (https://www.codementor.io/@engineerapart/getting-started-with-postgresql-on-mac-osx-are8jcopb)
 install postgres for development
 ```bash
@@ -27,6 +30,26 @@ createuser local_dev --createdb
 createdb e3_virtualizer -U local_dev
 ```
 
+### Docker
+First install docker desktop from docker.com
+
+Build the image from the dockerfile
+```bash
+docker build -t pg .
+```
+
+Run the container
+```bash
+docker run -d -p 5432:5432 pg
+```
+
+Check that the container is runnign
+```bash
+docker ps
+```
+
+## Populate the database
+
 push the schema to your database
 ```bash
 npx prisma db push
@@ -34,7 +57,7 @@ npx prisma db push
 
 run the seeder
 ```bash
-node seed.mjs
+node ./scripts/seed.mjs
 ```
 
 view the data in app OR 
