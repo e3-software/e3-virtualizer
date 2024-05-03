@@ -49,6 +49,10 @@ docker ps
 ```
 
 ## Populate the database
+Generate a client
+```bash
+npx prisma generate
+```
 
 push the schema to your database
 ```bash
