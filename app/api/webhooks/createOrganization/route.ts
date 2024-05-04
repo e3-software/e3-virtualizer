@@ -2,8 +2,8 @@ import WebhookValidator from '@/app/api/webhooks/validate';
 import prisma from '@/app/lib/prisma';
 
 /**
- * This webhook is triggered when a user is created in Clerk.
- * We want to create a user in our database when this happens so we can map a clerk user to our app user.
+ * This webhook is triggered when an organization is created in Clerk.
+ * We want to create an organization in our database when this happens so we can map a clerk organization to our app data.
  * 
  * @param req {
   "data": {
@@ -51,10 +51,10 @@ import prisma from '@/app/lib/prisma';
  */
 export const POST = async (req: Request) => {
   let evt;
-  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
+  const orgWebhookSecret = process.env.ORG_WEBHOOK_SECRET
 
   try {
-    evt = await WebhookValidator(req, WEBHOOK_SECRET);
+    evt = await WebhookValidator(req, orgWebhookSecret);
   } catch (exception: any) {
     console.log(exception.message)
     return new Response(exception.message, { status: 400 }) 
@@ -62,13 +62,12 @@ export const POST = async (req: Request) => {
   
   // Validate both needed fields exist
   if (
-    "primary_email_address_id" in evt.data &&
-    "email_addresses" in evt.data) {
+    "id" in evt.data &&
+    "name" in evt.data) {
 
-    const { id, primary_email_address_id, email_addresses } = evt.data;
-    const email = email_addresses.find((email) => email.id === primary_email_address_id);
+    const { id, name } = evt.data;
 
-    if (!id || !email) {
+    if (!id || !name) {
       return new Response('Missing Information', { status: 400 }) 
     }
     

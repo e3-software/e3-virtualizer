@@ -3,10 +3,9 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 
-const WebhookValidator = async (req: Request) => {
-  const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
+const WebhookValidator = async (req: Request, webhook_secret: string | undefined) => {
 
-  if (!WEBHOOK_SECRET) {
+  if (!webhook_secret) {
     throw new Error('Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local')
   }
 
@@ -26,7 +25,7 @@ const WebhookValidator = async (req: Request) => {
   const body = JSON.stringify(payload);
 
   // Create a new Svix instance with your secret.
-  const wh = new Webhook(WEBHOOK_SECRET);
+  const wh = new Webhook(webhook_secret);
 
   let evt: WebhookEvent
 
