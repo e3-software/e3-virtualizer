@@ -72,10 +72,10 @@ export const POST = async (req: Request) => {
     }
     
     try {
-      await prisma.user.create({
+      await prisma.organization.create({
         data: {
           external_id: id,
-          email: email.email_address
+          name
         }
       })
     } catch (exc: any) {
