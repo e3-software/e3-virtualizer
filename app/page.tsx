@@ -16,6 +16,8 @@ const BaseComponent = async () => {
     throw new Error('Error finding the current user')
   }
 
+  //TODO: if a user is an admin, they don't need an organization.
+  
   if(!orgId) {
     const orgList = await clerkClient.users.getOrganizationMembershipList({ userId })
     if(orgList.data.length === 0) {
