@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Organization, Address } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -11,12 +11,24 @@ const main = async () => {
       external_id: 'user_2fWvJdbWbpUEYb5VJzvVTfjffSW'
     }})
 
-  await prisma.organization.upsert({
+ const organization: Organization = await prisma.organization.upsert({
     where: { external_id: 'org_2fk3ro0INSSxZc88pCxWprTyI67'},
     update: {},
     create: {
       name: 'test_organization',
       external_id: 'org_2fk3ro0INSSxZc88pCxWprTyI67'
+    }
+  })
+  
+  const address: Address = await prisma.address.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
+      addressLine1: '7217 Smokey Hill Rd',
+      city: "Antioch",
+      state: "TN",
+      zip: "37013",
+      organizationId: organization.id
     }
   })
 }
