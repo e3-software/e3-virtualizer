@@ -1,1 +1,2 @@
-export * from '@/app/actions/postLogin/postLogin'
+export * from '@/app/actions/postLogin'
+export * from '@/app/actions/goTo'

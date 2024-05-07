@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation"
-import { auth, clerkClient } from "@clerk/nextjs/server"
-import { postLogin, IAppUserInfo} from '@/app/actions/postLogin'
+import { auth, clerkClient, Organization } from "@clerk/nextjs/server"
+import { postLogin, IAppUserInfo, goToDashboard} from '@/app/actions'
 
 /**
  * This component is at the root of the app. When a user authenticates. We ensure that the user 
@@ -10,35 +9,45 @@ import { postLogin, IAppUserInfo} from '@/app/actions/postLogin'
  */
 const BaseComponent = async () => {
 
-  let { orgId, userId } = auth()
+  let { orgId, userId,  sessionClaims } = auth()
 
-  if(!userId) {
-    throw new Error('Error finding the current user')
+
+  if(!userId || !sessionClaims) {
+    throw new Error('Error Loading User from clerk')
+  } 
+
+  const { appUserId, appOrgId } = sessionClaims.publicMeta
+  if(appUserId && appOrgId) {
+    // If metadata is set, and we have app user and org id, then proced to app
+    goToDashboard()
   }
 
-  //TODO: if a user is an admin, they don't need an organization.
-  
+  // If no app user and org id, try and find an org and user id and set it in metadata
+  const userOrgs: Organization[] = sessionClaims.orgs
   if(!orgId) {
-    const orgList = await clerkClient.users.getOrganizationMembershipList({ userId })
-    if(orgList.data.length === 0) {
+    if(userOrgs.length === 0) {
       throw new Error("User is not assigned to any organizations")
     }
 
-    orgId = orgList.data[0].id
+    orgId = userOrgs[0].id
   }
 
+  // We have clerk org and user id, We need to get app org and user id
   const result: IAppUserInfo = await postLogin(orgId, userId)
 
   try {
     await clerkClient.users.updateUserMetadata(userId, {
-      publicMetadata:{...result}
+      publicMetadata:{
+        ...sessionClaims.publicMeta, 
+        ...result
+      }
     })
   } catch (exception: any) {
     throw new Error('Error setting user metadata')
   }
   
-
-  redirect('/e3/dashboard')
+  // Finally after user info in metadata, proceed to app
+  goToDashboard()
 }
 
 export default BaseComponent

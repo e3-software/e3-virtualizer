@@ -2,6 +2,12 @@
 
 import prisma from '@/app/lib/prisma';
 
+/**
+ * Transforms clerk id's to app ids
+ * @param clerkOrgId id of organization in clerk
+ * @param clerkUserId id of user in clerk
+ * @returns app org and user id's
+ */
 export const postLogin = async (clerkOrgId: string , clerkUserId: string): Promise<IAppUserInfo> => {
     const [organization, user] = await prisma.$transaction([
         prisma.organization.findUnique({ where: { external_id: clerkOrgId } }),
