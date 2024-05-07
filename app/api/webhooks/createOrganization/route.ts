@@ -6,46 +6,21 @@ import prisma from '@/app/lib/prisma';
  * We want to create an organization in our database when this happens so we can map a clerk organization to our app data.
  * 
  * @param req {
+  {
   "data": {
-    "birthday": "",
-    "created_at": 1654012591514,
-    "email_addresses": [
-      {
-        "email_address": "example@example.org",
-        "id": "idn_29w83yL7CwVlJXylYLxcslromF1",
-        "linked_to": [],
-        "object": "email_address",
-        "verification": {
-          "status": "verified",
-          "strategy": "ticket"
-        }
-      }
-    ],
-    "external_accounts": [],
-    "external_id": "567772",
-    "first_name": "Example",
-    "gender": "",
-    "id": "user_29w83sxmDNGwOuEthce5gg56FcC",
+    "created_at": 1654013202977,
+    "created_by": "user_1vq84bqWzw7qmFgqSwN4CH1Wp0n",
+    "id": "org_29w9IfBrPmcpi0IeBVaKtA7R94W",
     "image_url": "https://img.clerk.com/xxxxxx",
-    "last_name": "Example",
-    "last_sign_in_at": 1654012591514,
-    "object": "user",
-    "password_enabled": true,
-    "phone_numbers": [],
-    "primary_email_address_id": "idn_29w83yL7CwVlJXylYLxcslromF1",
-    "primary_phone_number_id": null,
-    "primary_web3_wallet_id": null,
-    "private_metadata": {},
-    "profile_image_url": "https://www.gravatar.com/avatar?d=mp",
+    "logo_url": "https://example.org/example.png",
+    "name": "Acme Inc",
+    "object": "organization",
     "public_metadata": {},
-    "two_factor_enabled": false,
-    "unsafe_metadata": {},
-    "updated_at": 1654012591835,
-    "username": null,
-    "web3_wallets": []
+    "slug": "acme-inc",
+    "updated_at": 1654013202977
   },
   "object": "event",
-  "type": "user.created"
+  "type": "organization.created"
 }
  * @returns Response
  */
