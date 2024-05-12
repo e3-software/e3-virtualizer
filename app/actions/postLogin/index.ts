@@ -1,6 +1,6 @@
 'use server'
 
-import prisma from '@/app/lib/prisma';
+import { getOrgAndUser } from '@/app/lib/data/postLogin'
 
 /**
  * Transforms clerk id's to app ids
@@ -9,10 +9,7 @@ import prisma from '@/app/lib/prisma';
  * @returns app org and user id's
  */
 export const postLogin = async (clerkOrgId: string , clerkUserId: string): Promise<IAppUserInfo> => {
-    const [organization, user] = await prisma.$transaction([
-        prisma.organization.findUnique({ where: { external_id: clerkOrgId } }),
-        prisma.user.findUnique({ where: { external_id: clerkUserId } })
-    ])
+    const [organization, user] = await getOrgAndUser(clerkOrgId, clerkUserId)
 
     if(!organization?.id || !user?.id) {
         throw new Error("error converting clert to app data")
