@@ -1,52 +1,19 @@
-import { fetchLastAddresses } from "@/app/lib/data/addresses"
+import { FetchAddress } from "@/app/lib/data/addresses"
+import AddressTable from '@/app/ui/addresses/addressTable'
 
+/**
+ * This is a wrappeer component that will allow the ability to fetch
+ * addresses on the server and pass them to the addressTable method which
+ * will probably be client side
+ * 
+ * @returns React Component to display the address table
+ */
 const Addresses = async () => {
-    const results = await fetchLastAddresses()
+    const records = await new FetchAddress().byOrg()
     return (
         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-            <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                      Address
-                    </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      City
-                    </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      State
-                    </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      Zip
-                    </th>
-                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                      Tags
-                    </th>
-                    <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                      <span className="sr-only">Edit</span>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
-                  {results.map((result) => (
-                    <tr key={result.id}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                        {result.addressLine1}
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{result.city}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{result.state}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{result.zip}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">tags</td>
-                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                          Edit<span className="sr-only">, {result.id}</span>
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <AddressTable records={records} />
             </div>
         </div>
     )

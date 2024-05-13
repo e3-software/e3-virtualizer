@@ -19,6 +19,15 @@ const main = async () => {
       external_id: 'org_2fk3ro0INSSxZc88pCxWprTyI67'
     }
   })
+
+  const organization2: Organization = await prisma.organization.upsert({
+    where: { external_id: 'org_2g21iDEQ16ioKk98TpiLRMtuvVp'},
+    update: {},
+    create: {
+      name: 'test-org-2',
+      external_id: 'org_2g21iDEQ16ioKk98TpiLRMtuvVp'
+    }
+  })
   
   const address: Address = await prisma.address.upsert({
     where: { id: 1 },
@@ -29,6 +38,18 @@ const main = async () => {
       state: "TN",
       zip: "37013",
       organizationId: organization.id
+    }
+  })
+
+  const address2: Address = await prisma.address.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
+      addressLine1: '4808 Boxbury Lane',
+      city: "OldHickory",
+      state: "TN",
+      zip: "37138",
+      organizationId: organization2.id
     }
   })
 }
