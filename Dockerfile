@@ -1,9 +1,9 @@
-FROM postgres:14.11-alpine3.19
+FROM postgis/postgis:16-3.4
 
-RUN apk update
+RUN apt-get update
 ## Install Node
 RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - 
-RUN apk add nodejs npm
+RUN apt-get install nodejs npm -y
 
 WORKDIR /app
 
