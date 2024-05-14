@@ -61,7 +61,7 @@ npx prisma db push
 
 run the seeder
 ```bash
-node ./scripts/seed.mjs
+npx prisma db seed
 ```
 
 view the data in app OR 
@@ -81,3 +81,8 @@ View the migration at prisma/migrations/...
 You'll need a clerk user so lets create  on of those first. 
 After a clerk user is created. Copy the user id.
 Navigate to seed.mjs and add the new user with the user id.
+
+## Shell into db
+```bash
+psql -d e3_virtualizer --username=local_dev -W
+```
