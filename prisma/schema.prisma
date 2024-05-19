@@ -2,42 +2,45 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL") // uses a direct connection
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  directUrl  = env("DIRECT_URL") // uses a direct connection
+  extensions = [postgis]
 }
 
 model User {
-  id          Int        @id @default(autoincrement())
-  email       String     @unique
-  external_id String     @unique
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  external_id String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Organization {
-  id          Int      @id @default(autoincrement())
-  external_id String   @unique
+  id          Int       @id @default(autoincrement())
+  external_id String    @unique
   name        String
-  addresses Address[]
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  addresses   Address[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Address {
-  id             Int          @id @default(autoincrement())
+  id             Int                                    @id @default(autoincrement())
   addressLine1   String
   addressLine2   String?
   addressLine3   String?
   city           String
   state          String
   zip            String
-  organization   Organization @relation(fields: [organizationId], references: [id])
+  organization   Organization                           @relation(fields: [organizationId], references: [id])
   organizationId Int
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
+  location       Unsupported("geography(Point, 4326)")?
+  createdAt      DateTime                               @default(now())
+  updatedAt      DateTime?                              @updatedAt
 }

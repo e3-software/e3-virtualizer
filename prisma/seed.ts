@@ -1,63 +1,65 @@
-import { PrismaClient, Organization, Address } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { Organization } from "@prisma/client";
+import prisma from "../app/lib/prisma";
 
 const main = async () => {
   await prisma.user.upsert({
-    where: { email: 'ryann.chandler@gmail.com'},
+    where: { email: "ryann.chandler@gmail.com" },
     update: {},
     create: {
-      email: 'ryann.chandler@gmail.com',
-      external_id: 'user_2fWvJdbWbpUEYb5VJzvVTfjffSW'
-    }})
+      email: "ryann.chandler@gmail.com",
+      external_id: "user_2fWvJdbWbpUEYb5VJzvVTfjffSW",
+    },
+  });
 
- const organization: Organization = await prisma.organization.upsert({
-    where: { external_id: 'org_2fk3ro0INSSxZc88pCxWprTyI67'},
+  const organization: Organization = await prisma.organization.upsert({
+    where: { external_id: "org_2fk3ro0INSSxZc88pCxWprTyI67" },
     update: {},
     create: {
-      name: 'test_organization',
-      external_id: 'org_2fk3ro0INSSxZc88pCxWprTyI67'
-    }
-  })
+      name: "test_organization",
+      external_id: "org_2fk3ro0INSSxZc88pCxWprTyI67",
+    },
+  });
 
   const organization2: Organization = await prisma.organization.upsert({
-    where: { external_id: 'org_2g21iDEQ16ioKk98TpiLRMtuvVp'},
+    where: { external_id: "org_2g21iDEQ16ioKk98TpiLRMtuvVp" },
     update: {},
     create: {
-      name: 'test-org-2',
-      external_id: 'org_2g21iDEQ16ioKk98TpiLRMtuvVp'
-    }
-  })
-  
-  const address: Address = await prisma.address.upsert({
+      name: "test-org-2",
+      external_id: "org_2g21iDEQ16ioKk98TpiLRMtuvVp",
+    },
+  });
+
+  prisma.address.upsert({
     where: { id: 1 },
-    update: {},
-    create: {
-      addressLine1: '7217 Smokey Hill Rd',
+    update: {
+      addressLine1: "72173 Smokey Hill Rd",
       city: "Antioch",
       state: "TN",
       zip: "37013",
-      organizationId: organization.id
-    }
-  })
-
-  const address2: Address = await prisma.address.upsert({
-    where: { id: 2 },
-    update: {},
+      organizationId: organization.id,
+      location: {
+        longitude: 36.005784,
+        latitude: -86.631192,
+      },
+    } as AddressRecord,
     create: {
-      addressLine1: '4808 Boxbury Lane',
-      city: "OldHickory",
+      addressLine1: "7217 Smokey Hill Rd",
+      city: "Antioch",
       state: "TN",
-      zip: "37138",
-      organizationId: organization2.id
-    }
-  })
-}
+      zip: "37013",
+      organizationId: organization.id,
+      location: {
+        longitude: -86.631136,
+        latitude: 36.005771,
+      },
+    } as AddressRecord,
+  });
+};
 
 main()
-  .catch(e => {
-    throw e
+  .catch((e) => {
+    throw e;
   })
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });

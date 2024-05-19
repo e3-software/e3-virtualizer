@@ -1,6 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
+import extendModels from "./extensions";
 
-let prisma: PrismaClient;
+let prisma: PrismaClient = new PrismaClient();
 
 if (process.env.NODE_ENV === "production") {
   prisma = new PrismaClient();
@@ -14,4 +15,4 @@ if (process.env.NODE_ENV === "production") {
   prisma = globalWithPrisma.prisma;
 }
 
-export default prisma;
+export default extendModels(prisma);
