@@ -44,3 +44,21 @@ model Address {
   createdAt      DateTime                               @default(now())
   updatedAt      DateTime?                              @updatedAt
 }
+
+model ZipCode {
+  zip                 String  @id
+  type                String?
+  primaryCity         String?
+  acceptableCities    String?
+  state               String?
+  county              String?
+  timezone            String?
+  areaCodes           String?
+  latitude            Float
+  longitude           Float
+  worldRegion         String?
+  country             String?
+  decommissioned      String?
+  estimatedPopulation String?
+  notes               String?
+}
