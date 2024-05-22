@@ -1,3 +1,3 @@
-import Addresses from '@/app/ui/addresses/addresses'
+import Addresses from "@/app/ui/addresses/addresses";
 
-export default Addresses
+export default Addresses;

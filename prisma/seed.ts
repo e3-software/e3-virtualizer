@@ -1,4 +1,4 @@
-import { Organization } from "@prisma/client";
+import { Prisma, Organization } from "@prisma/client";
 import prisma from "../app/lib/prisma";
 
 const main = async () => {
