@@ -1,31 +1,23 @@
-"use client";
- 
-import { useState } from 'react';
-import Sidebar from '@/app/ui/sidebar/sidebar';
-import Header from '@/app/ui/header/header';
+import Navigation from "@/app/ui/navigation";
+import Header from "@/app/ui/header";
 
-/**
- * 
- * @param param0 Main dashboard page scaffolding
- * @returns 
- */
-const Layout = ({ children }: { children: React.ReactNode }) => {
-  // manage sidebar open/closed state for app in main layout
-  const [ sidebarOpen, setSidebarOpen] = useState(false)
+const BaseLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+    <>
+      <div className="min-h-full bg-gray-50">
+        <div className="bg-astral-800 pb-32">
+          <Navigation />
+          <Header />
+        </div>
 
-      <div className="lg:pl-72">        
-        <Header setSidebarOpen={setSidebarOpen} sidebarIsOpen={sidebarOpen} />
-        <main className="py-10">
-          <div className="px-4 sm:px-6 lg:px-8">
+        <main className="-mt-32">
+          <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
             {children}
           </div>
         </main>
       </div>
-    </div>
+    </>
   );
-}
+};
 
-export default Layout;
+export default BaseLayout;
