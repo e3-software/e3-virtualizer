@@ -2,30 +2,21 @@
 import { Fragment, useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
-import { APIProvider, Map, Marker } from "@vis.gl/react-google-maps";
 
 import {
-  Popover,
   Button,
   Dialog,
   Transition,
-  PopoverButton,
-  PopoverPanel,
-  Description,
   Field,
   Fieldset,
   Input,
   Label,
-  Legend,
-  Select,
-  Textarea,
 } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import clsx from "clsx";
+import GMaps from "./map";
 
 const SideFilters = () => {
   const [open, setOpen] = useState(false);
-  const position = { lat: 36.005771, lng: -86.631136 };
 
   return (
     <>
@@ -112,11 +103,7 @@ const SideFilters = () => {
                         </div>
                       </div>
                       <div className="relative mt-6 flex-1 px-4 sm:px-6 flex-col">
-                        <APIProvider apiKey="AIzaSyDZu5_-pOAL3VB-1mB6cE6IgBHszSFicFU">
-                          <Map defaultCenter={position} defaultZoom={10}>
-                            <Marker position={position} />
-                          </Map>
-                        </APIProvider>
+                        <GMaps />
                       </div>
                     </div>
                   </Dialog.Panel>
