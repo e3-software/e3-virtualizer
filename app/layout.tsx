@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { inter } from "./ui/fonts";
 import "@/app/ui/globals.css";
-import { ClerkProvider } from '@clerk/nextjs'
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "Create Next App",
