@@ -1,5 +1,6 @@
 import { Prisma, Organization } from "@prisma/client";
 import prisma from "../app/lib/prisma";
+import { create } from "domain";
 
 const main = async () => {
   await prisma.user.upsert({
@@ -29,10 +30,22 @@ const main = async () => {
     },
   });
 
-  prisma.address.upsert({
+  const tag = await prisma.tag.create({
+    data: {
+      name: "volunteer",
+      organizationId: organization.id,
+    },
+  });
+
+  await prisma.record.upsert({
     where: { id: 1 },
     update: {
-      addressLine1: "72173 Smokey Hill Rd",
+      externalSystemId: "234",
+      firstName: "Ryann",
+      lastName: "Chandler",
+      fullName: "Ryann Chandler",
+      phone: "615-210-8078",
+      address: "72173 Smokey Hill Rd",
       city: "Antioch",
       state: "TN",
       zip: "37013",
@@ -41,18 +54,24 @@ const main = async () => {
         longitude: 36.005784,
         latitude: -86.631192,
       },
-    } as AddressRecord,
+    } as E3Record,
     create: {
-      addressLine1: "7217 Smokey Hill Rd",
+      externalSystemId: "234",
+      firstName: "Kristen",
+      lastName: "Chandler",
+      fullName: "Kristen Chandler",
+      phone: "615-842-9506",
+      address: "72173 Smokey Hill Rd",
       city: "Antioch",
       state: "TN",
       zip: "37013",
       organizationId: organization.id,
+      tags: [tag],
       location: {
-        longitude: -86.631136,
-        latitude: 36.005771,
+        longitude: 36.005784,
+        latitude: -86.631192,
       },
-    } as AddressRecord,
+    } as E3Record,
   });
 };
 

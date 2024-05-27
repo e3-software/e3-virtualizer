@@ -4,7 +4,7 @@ import { mapRecord } from "./shared";
 export const searchByZip =
   (prisma: PrismaClient) =>
   async (zip: string, radiusMiles: number = 1) => {
-    const search: AddressPoint = {
+    const search: RecordPoint = {
       latitude: 36.174465,
       longitude: -86.76796,
     };
@@ -12,14 +12,17 @@ export const searchByZip =
     const query: Prisma.Sql = Prisma.sql`
             SELECT 
               "id",
-              "addressLine1",
-              "addressLine2",
-              "addressLine3",
+              "externalSystemId",
+              "address",
+              "firstName",
+              "lastName",
+              "fullName",
+              "phone",
               "city",
               "state",
               "zip",
               "organizationId"
-            FROM "Address"
+            FROM "Record"
             WHERE ST_DWithin(location::geography, ST_MakePoint(${search.latitude} ${search.longitude}), ${radiusMeters})
     `;
 

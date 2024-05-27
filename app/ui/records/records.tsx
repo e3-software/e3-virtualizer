@@ -1,5 +1,5 @@
-import { FetchAddress } from "@/app/lib/data/addresses";
-import AddressTable from "@/app/ui/addresses/addressTable";
+import { FetchRecords } from "@/app/lib/data/records";
+import RecordsTable from "./recordsTable";
 
 /**
  * This is a wrappeer component that will allow the ability to fetch
@@ -8,15 +8,15 @@ import AddressTable from "@/app/ui/addresses/addressTable";
  *
  * @returns React Component to display the address table
  */
-const Addresses = async () => {
-  const records = await new FetchAddress().byOrg();
+const Records = async () => {
+  const records = await new FetchRecords().byOrg();
   return (
     <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
       <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
-        <AddressTable records={records} />
+        <RecordsTable records={records} />
       </div>
     </div>
   );
 };
 
-export default Addresses;
+export default Records;
