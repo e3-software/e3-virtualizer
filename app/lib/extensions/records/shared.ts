@@ -32,40 +32,7 @@ export const getCreateQuery = (newRecord: E3Record) => {
             ${newRecord.zip},
             ${newRecord.organizationId},
             ST_GeomFromText(${point}, 4326)
-          )`;
-  return query;
-};
-
-export const getUpsertTags = (tags: Tag[]) => {
-  const query: Prisma.Sql = Prisma.sql`
-    INSERT INTO "Tag" (
-      "name",
-       "organizationId"
-    ) VALUES ${tags
-      .map((tag: Tag) => {
-        return `(${tag.name}, ${tag.organizationId})`;
-      })
-      .join(",")} 
-      as new
-      ON DUPLICATE KEY UPDATE
-      "name" = new.name
-  `;
-
-  return query;
-};
-
-export const joinRecordstoTags = (record: Record, tags: Tag[]) => {
-  const query: Prisma.Sql = Prisma.sql`
-    INSERT INTO "TagsOnRecord" (
-      "tagId",
-      "recordId"
-    ) VALUES ${tags
-      .map((tag: Tag) => {
-        return `(${tag.id}, ${record.id})`;
-      })
-      .join(",")}
-  `;
-
+          ) RETURNING id`;
   return query;
 };
 

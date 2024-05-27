@@ -30,8 +30,12 @@ const main = async () => {
     },
   });
 
-  const tag = await prisma.tag.create({
-    data: {
+  const tag = await prisma.tag.upsert({
+    where: {
+      tagIdentifier: { name: "volunteer", organizationId: organization.id },
+    },
+    update: {},
+    create: {
       name: "volunteer",
       organizationId: organization.id,
     },
@@ -66,7 +70,7 @@ const main = async () => {
       state: "TN",
       zip: "37013",
       organizationId: organization.id,
-      tags: [tag],
+      tags: [tag.name],
       location: {
         longitude: 36.005784,
         latitude: -86.631192,
