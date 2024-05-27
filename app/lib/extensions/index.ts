@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import AddressExtension from "./address";
+import RecordExtension from "./records";
 
 export default (prisma: PrismaClient) => {
-  [AddressExtension].forEach((callback) => callback(prisma));
+  [RecordExtension].forEach((callback) => callback(prisma));
 
   return prisma.$extends({
     model: {
-      address: AddressExtension(prisma),
+      record: RecordExtension(prisma),
     },
   });
 };

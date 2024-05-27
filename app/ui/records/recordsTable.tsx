@@ -1,20 +1,23 @@
 "use client";
 import { Checkbox } from "@headlessui/react";
 import { useState } from "react";
-import { Address } from "@prisma/client";
+import { Record, Tag } from "@prisma/client";
 
-const AddressTable = ({ records }: IAddressTable) => {
+const AddressTable = ({ records }: IRecordsTable) => {
   const [enabled, setEnabled] = useState(false);
 
-  records = Array(10)
-    .fill([...records])
-    .reduce((a, b) => a.concat(b));
-
+  console.log(records);
   return (
     <table className="min-w-full divide-y divide-gray-300">
       <thead className="bg-gray-50">
         <tr>
           <th></th>
+          <th
+            scope="col"
+            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+          >
+            Name
+          </th>
           <th
             scope="col"
             className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
@@ -51,7 +54,7 @@ const AddressTable = ({ records }: IAddressTable) => {
         </tr>
       </thead>
       <tbody className="divide-y divide-gray-200 bg-white">
-        {records.map((record) => (
+        {records.map((record: Record) => (
           <tr key={record.id}>
             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
               <Checkbox
@@ -75,7 +78,10 @@ const AddressTable = ({ records }: IAddressTable) => {
               </Checkbox>
             </td>
             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-              {record.addressLine1}
+              {record.fullName}
+            </td>
+            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+              {record.address}
             </td>
             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
               {record.city}
@@ -87,7 +93,9 @@ const AddressTable = ({ records }: IAddressTable) => {
               {record.zip}
             </td>
             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-              tags
+              {record.tags.map((tag: Tag) => (
+                <div>{tag.name}</div>
+              ))}
             </td>
             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
               <a href="#" className="text-astral-600 hover:text-astral-900">
@@ -101,8 +109,8 @@ const AddressTable = ({ records }: IAddressTable) => {
   );
 };
 
-export interface IAddressTable {
-  records: Address[];
+export interface IRecordsTable {
+  records: Record[];
 }
 
 export default AddressTable;

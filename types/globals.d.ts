@@ -12,21 +12,25 @@ declare global {
     };
   }
 
-  type AddressPoint = {
+  type RecordPoint = {
     latitude: number;
     longitude: number;
   };
 
-  type AddressRecord = {
-    addressLine1: string;
-    addressLine2?: string;
-    addressLine3?: string;
+  type E3Record = {
+    externalSystemId: string;
+    firstName: string?;
+    lastName: string?;
+    fullName: string?;
+    phone: string;
+    address: string;
     city: string;
     state: string;
     zip: string;
+    tags: Tag[]?;
     organizationId: number;
     location: AddressPoint;
   };
 
-  type AddressRecordInput = { data: AddressRecord & AddressPoint };
+  type RecordInput = { data: E3Record & RecordPoint };
 }

@@ -22,27 +22,56 @@ model User {
 }
 
 model Organization {
-  id          Int       @id @default(autoincrement())
-  external_id String    @unique
+  id          Int      @id @default(autoincrement())
+  external_id String   @unique
   name        String
-  addresses   Address[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  records     Record[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  Tag         Tag[]
 }
 
-model Address {
-  id             Int                                    @id @default(autoincrement())
-  addressLine1   String
-  addressLine2   String?
-  addressLine3   String?
-  city           String
-  state          String
-  zip            String
-  organization   Organization                           @relation(fields: [organizationId], references: [id])
+model Tag {
+  id             Int            @id @default(autoincrement())
+  name           String
+  organization   Organization   @relation(fields: [organizationId], references: [id])
   organizationId Int
-  location       Unsupported("geography(Point, 4326)")?
-  createdAt      DateTime                               @default(now())
-  updatedAt      DateTime?                              @updatedAt
+  records        Record[]
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime?      @updatedAt
+  TagsOnRecord   TagsOnRecord[]
+
+  @@unique([name, organizationId], name: "tagIdentifier")
+}
+
+model Record {
+  id               Int                                    @id @default(autoincrement())
+  externalSystemId String
+  firstName        String?
+  lastName         String?
+  fullName         String?
+  phone            String?
+  address          String?
+  city             String?
+  state            String?
+  zip              String
+  organization     Organization                           @relation(fields: [organizationId], references: [id])
+  organizationId   Int
+  tags             Tag[]
+  location         Unsupported("geography(Point, 4326)")?
+  createdAt        DateTime                               @default(now())
+  updatedAt        DateTime?                              @updatedAt
+  TagsOnRecord     TagsOnRecord[]
+}
+
+model TagsOnRecord {
+  record     Record   @relation(fields: [recordId], references: [id])
+  recordId   Int
+  tag        Tag      @relation(fields: [tagId], references: [id])
+  tagId      Int
+  assignedAt DateTime @default(now())
+
+  @@id([recordId, tagId])
 }
 
 model ZipCode {
