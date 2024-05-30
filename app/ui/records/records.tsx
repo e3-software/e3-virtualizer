@@ -10,8 +10,9 @@ import RecordsTable from "./recordsTable";
  */
 const Records = async () => {
   const records = await new FetchRecords().byOrg();
+
   return (
-    <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+    <div className="inline-block min-w-full align-middle">
       <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
         <RecordsTable records={records} />
       </div>
