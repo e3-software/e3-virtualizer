@@ -21,7 +21,11 @@ export class FetchRecords extends BaseDataFetcher {
     return prisma.record.findMany({
       where: this.queryWithOrg(),
       include: {
-        tags: true,
+        recordToTags: {
+          include: {
+            tag: true,
+          },
+        },
       },
       orderBy: { createdAt: sortOrder },
     });

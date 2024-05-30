@@ -1,12 +1,12 @@
 "use client";
 import { Checkbox } from "@headlessui/react";
 import { useState } from "react";
-import { Record, Tag } from "@prisma/client";
+import { Record, RecordToTags, Tag } from "@prisma/client";
+import TagDisplay from "./tags";
 
 const AddressTable = ({ records }: IRecordsTable) => {
   const [enabled, setEnabled] = useState(false);
 
-  console.log(records);
   return (
     <table className="min-w-full divide-y divide-gray-300">
       <thead className="bg-gray-50">
@@ -93,9 +93,7 @@ const AddressTable = ({ records }: IRecordsTable) => {
               {record.zip}
             </td>
             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-              {record.tags.map((tag: Tag) => (
-                <div>{tag.name}</div>
-              ))}
+              {showTags(record)}
             </td>
             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
               <a href="#" className="text-astral-600 hover:text-astral-900">
@@ -109,8 +107,18 @@ const AddressTable = ({ records }: IRecordsTable) => {
   );
 };
 
+const showTags = (record: RecordWithTags) => {
+  const { recordToTags } = record;
+  return recordToTags.map((recordToTag: RecordToTagWithTag) => {
+    const { tag } = recordToTag;
+    return (
+      <TagDisplay key={recordToTag.tagId + "_tag_" + record.id} tag={tag} />
+    );
+  });
+};
+
 export interface IRecordsTable {
-  records: Record[];
+  records: RecordWithTags[];
 }
 
 export default AddressTable;

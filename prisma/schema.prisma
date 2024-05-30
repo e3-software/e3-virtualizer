@@ -3,7 +3,7 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["postgresqlExtensions"]
+  previewFeatures = ["postgresqlExtensions", "relationJoins"]
 }
 
 datasource db {
@@ -36,10 +36,9 @@ model Tag {
   name           String
   organization   Organization   @relation(fields: [organizationId], references: [id])
   organizationId Int
-  records        Record[]
   createdAt      DateTime       @default(now())
   updatedAt      DateTime?      @updatedAt
-  TagsOnRecord   TagsOnRecord[]
+  recordToTags   RecordToTags[]
 
   @@unique([name, organizationId], name: "tagIdentifier")
 }
@@ -57,14 +56,13 @@ model Record {
   zip              String
   organization     Organization                           @relation(fields: [organizationId], references: [id])
   organizationId   Int
-  tags             Tag[]
   location         Unsupported("geography(Point, 4326)")?
   createdAt        DateTime                               @default(now())
   updatedAt        DateTime?                              @updatedAt
-  TagsOnRecord     TagsOnRecord[]
+  recordToTags     RecordToTags[]
 }
 
-model TagsOnRecord {
+model RecordToTags {
   record     Record   @relation(fields: [recordId], references: [id])
   recordId   Int
   tag        Tag      @relation(fields: [tagId], references: [id])
@@ -72,6 +70,7 @@ model TagsOnRecord {
   assignedAt DateTime @default(now())
 
   @@id([recordId, tagId])
+  @@map(name: "_RecordToTags")
 }
 
 model ZipCode {

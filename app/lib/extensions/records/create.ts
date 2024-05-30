@@ -2,8 +2,8 @@ import {
   Prisma,
   PrismaClient,
   Record,
+  RecordToTags,
   Tag,
-  TagsOnRecord,
 } from "@prisma/client";
 import { getCreateQuery } from "./shared";
 /**
@@ -64,10 +64,10 @@ const create = (prisma: PrismaClient) => async (input: { data: E3Record }) => {
     });
 
     // Create the association between the record and the tags
-    await prisma.tagsOnRecord.createMany({
+    await prisma.recordToTags.createMany({
       data: tagsToGet.map(
         (tag: Tag) =>
-          ({ tagId: tag.id, recordId: recordIds[0].id }) as TagsOnRecord,
+          ({ tagId: tag.id, recordId: recordIds[0].id }) as RecordToTags,
       ),
       skipDuplicates: true,
     });

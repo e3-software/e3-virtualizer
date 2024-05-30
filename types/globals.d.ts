@@ -27,10 +27,18 @@ declare global {
     city: string;
     state: string;
     zip: string;
-    tags: Tag[]?;
+    recordToTags: RecordTotags[]?;
     organizationId: number;
     location: AddressPoint;
   };
 
   type RecordInput = { data: E3Record & RecordPoint };
+
+  type RecordToTagWithTag = RecordToTags & {
+    tag: Tag;
+  };
+
+  type RecordWithTags = Record & {
+    recordToTags: RecordToTagWithTag;
+  };
 }
