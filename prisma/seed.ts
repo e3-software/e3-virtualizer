@@ -70,12 +70,12 @@ const main = async () => {
       state: "TN",
       zip: "37013",
       organizationId: organization.id,
-      tags: [tag.name],
+      recordToTags: [tag],
       location: {
         longitude: 36.005784,
         latitude: -86.631192,
       },
-    } as E3Record,
+    } as RecordWithTags,
   });
 };
 

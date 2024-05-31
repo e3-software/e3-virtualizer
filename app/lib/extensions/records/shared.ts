@@ -95,7 +95,7 @@ export const getById = async (
 
   const rawRecord = rawResults[0];
 
-  const foundRecord: E3Record = {
+  const foundRecord: RecordWithTags = {
     address: rawRecord.address,
     externalSystemId: rawRecord.externalSystemId,
     firstName: rawRecord.firstName,
@@ -105,7 +105,7 @@ export const getById = async (
     city: rawRecord.city,
     state: rawRecord.state,
     zip: rawRecord.zip,
-    tags: [],
+    recordToTags: [],
     organizationId: rawRecord.organizationId,
     location: {
       latitude: rawRecord.st_x || 0,
@@ -127,11 +127,11 @@ export const mapRecord = (record: any) => {
     city: record.city,
     state: record.state,
     zip: record.zip,
-    tags: [],
+    recordToTags: [],
     organizationId: record.organizationId,
     location: {
       latitude: record.st_x || 0,
       longitude: record.st_y || 0,
     } as RecordPoint,
-  } as E3Record;
+  } as RecordWithTags;
 };
