@@ -43,7 +43,7 @@ Run the container
 docker run -d -p 5432:5432 pg
 ```
 
-Check that the container is runnign
+Check that the container is running
 ```bash
 docker ps
 ```
