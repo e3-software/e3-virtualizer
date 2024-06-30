@@ -1,5 +1,5 @@
 import { auth, clerkClient, Organization } from "@clerk/nextjs/server"
-import { postLogin, IAppUserInfo, goToDashboard} from '@/app/actions'
+import { postLogin, IAppUserInfo, goToContacts} from '@/app/actions'
 
 /**
  * This component is at the root of the app. When a user authenticates. We ensure that the user 
@@ -19,7 +19,7 @@ const BaseComponent = async () => {
   const { appUserId, appOrgId } = sessionClaims.publicMeta
   if(appUserId && appOrgId) {
     // If metadata is set, and we have app user and org id, then proced to app
-    goToDashboard()
+    goToContacts()
   }
 
   // If no app user and org id, try and find an org and user id and set it in metadata
@@ -47,7 +47,7 @@ const BaseComponent = async () => {
   }
   
   // Finally after user info in metadata, proceed to app
-  goToDashboard()
+  goToContacts()
 }
 
 export default BaseComponent
