@@ -1,5 +1,5 @@
 import Navigation from "@/app/ui/navigation";
-import Header from "@/app/ui/header";
+import ContactsHeader from "@/app/ui/header";
 
 const BaseLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -7,7 +7,7 @@ const BaseLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="min-h-full bg-gray-50">
         <div className="bg-astral-800 pb-32">
           <Navigation />
-          <Header />
+          {/* <ContactsHeader /> */}
         </div>
 
         <main className="-mt-32">

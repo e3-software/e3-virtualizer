@@ -4,6 +4,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  ArrowUpOnSquareIcon,
   CalendarIcon,
   ChartPieIcon,
   DocumentDuplicateIcon,
@@ -15,6 +16,7 @@ import {
 const navigation = [
   { name: "Contacts", href: "/e3/contacts", icon: HomeIcon },
   { name: "Team", href: "/e3/team", icon: UsersIcon },
+  { name: "Import", href: "/e3/import", icon: ArrowUpOnSquareIcon },
   { name: "Projects", href: "#", icon: FolderIcon },
   { name: "Calendar", href: "#", icon: CalendarIcon },
   { name: "Documents", href: "#", icon: DocumentDuplicateIcon },
