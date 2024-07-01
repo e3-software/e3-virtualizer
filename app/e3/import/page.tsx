@@ -1,4 +1,5 @@
 import { ImportHeader } from "@/app/ui/header/header";
+import ImportButton from "@/app/ui/importButton";
 
 const Import = () => {
   return (
@@ -7,7 +8,7 @@ const Import = () => {
         <ImportHeader />
       </header>
       <div>
-        {/* <ImportFiles /> */}
+        <ImportButton />
       </div>
     </div>
   );

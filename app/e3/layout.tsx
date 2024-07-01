@@ -1,5 +1,4 @@
 import Navigation from "@/app/ui/navigation";
-import ContactsHeader from "@/app/ui/header";
 
 const BaseLayout = ({ children }: { children: React.ReactNode }) => {
   return (
