@@ -1,6 +1,6 @@
 import Records from "@/app/ui/records";
 
-const Dashboard = () => {
+const Contacts = () => {
   return (
     <div className="rounded-lg bg-white shadow-md">
       <Records />
@@ -8,4 +8,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Contacts;

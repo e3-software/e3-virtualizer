@@ -3,7 +3,7 @@ import { Disclosure } from "@headlessui/react";
 import { usePathname } from "next/navigation";
 
 const navigation = [
-  { name: "Dashboard", href: "/e3/dashboard", current: true },
+  { name: "Contacts", href: "/e3/contacts", current: true },
   { name: "Team", href: "/e3/team", current: false },
   { name: "Projects", href: "#", current: false },
   { name: "Calendar", href: "#", current: false },

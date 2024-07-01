@@ -1,3 +1,3 @@
 import { redirect } from "next/navigation"
 
-export const goToDashboard = () => redirect('/e3/dashboard')
+export const goToContacts = () => redirect('/e3/contacts')

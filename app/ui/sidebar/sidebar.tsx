@@ -13,7 +13,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 const navigation = [
-  { name: "Dashboard", href: "/e3/dashboard", icon: HomeIcon },
+  { name: "Contacts", href: "/e3/contacts", icon: HomeIcon },
   { name: "Team", href: "/e3/team", icon: UsersIcon },
   { name: "Projects", href: "#", icon: FolderIcon },
   { name: "Calendar", href: "#", icon: CalendarIcon },
