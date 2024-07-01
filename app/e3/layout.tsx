@@ -7,7 +7,6 @@ const BaseLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="min-h-full bg-gray-50">
         <div className="bg-astral-800 pb-32">
           <Navigation />
-          {/* <ContactsHeader /> */}
         </div>
 
         <main className="-mt-32">

@@ -5,7 +5,7 @@ import SideFilters from "../sideFilters";
  * @param param Header component for main contacts page
  * @returns
  */
-const ContactsHeader = () => {
+export function ContactsHeader(){
   return (
     <header className="py-10">
       <div className="flex mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -20,4 +20,14 @@ const ContactsHeader = () => {
   );
 };
 
-export default ContactsHeader;
+export function ImportHeader(){
+  return (
+    <header className="py-10">
+      <div className="flex mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h1 className="text-3xl font-bold tracking-tight text-white flex-grow">
+          Import
+        </h1>
+      </div>
+    </header>
+  );
+};

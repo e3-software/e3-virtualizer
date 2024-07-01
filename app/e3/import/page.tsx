@@ -1,7 +1,14 @@
+import { ImportHeader } from "@/app/ui/header/header";
+
 const Import = () => {
   return (
-    <div className="rounded-lg bg-white shadow-md">
-      {/* <ImportFile /> */}
+    <div>
+      <header>
+        <ImportHeader />
+      </header>
+      <div>
+        {/* <ImportFiles /> */}
+      </div>
     </div>
   );
 };
