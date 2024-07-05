@@ -5,15 +5,24 @@
  */
 
 "use client";
-// import { useState } from "react";
 import { ArrowUpOnSquareIcon } from "@heroicons/react/24/outline";
 import { Button } from "@headlessui/react";
 
 const ImportButton = () => {
- return (
-    <>
+  const handleUpload = (e: any) => {
+    const nameOfFile = e.get("importUpload").name;
+    console.log(nameOfFile);
+  }
+   
+  return (
+    <form action={handleUpload}>
+      <input 
+        type='file'
+        id='fileUpload'
+        name='importUpload'>
+      </input>
       <Button
-        // onClick={}
+        type='submit'
         className="block rounded-md bg-astral-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-astral-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-astral-600"
       >
         <div className="group flex gap-x-3 rounded-md text-sm leading-6 font-semibold">
@@ -21,8 +30,7 @@ const ImportButton = () => {
           Import
         </div>
       </Button>
-
-    </>
+    </form>
   );
 };
 
