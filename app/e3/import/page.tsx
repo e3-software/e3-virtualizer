@@ -7,7 +7,7 @@ const Import = () => {
       <header>
         <ImportHeader />
       </header>
-      <div>
+      <div style={{ marginTop: "50px" }}>
         <ImportButton />
       </div>
     </div>

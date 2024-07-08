@@ -21,7 +21,7 @@ const ImportButton = () => {
         id='fileUpload'
         name='importUpload'>
       </input>
-      <Button
+      <Button style={{ marginTop: "15px", display: "inline-block"}}
         type='submit'
         className="block rounded-md bg-astral-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-astral-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-astral-600"
       >
