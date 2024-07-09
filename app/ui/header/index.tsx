@@ -1,3 +1,3 @@
-import Header from "./header";
+import {ContactsHeader} from "./header";
 
-export default Header;
+export default ContactsHeader;
