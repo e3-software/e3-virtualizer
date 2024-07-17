@@ -1,5 +1,6 @@
 import { UserButton } from "@clerk/nextjs";
 import { BellIcon } from "@heroicons/react/24/outline";
+import ThemeSwitch from "../themeSwitch";
 
 const UserBlock = () => (
   <div className="ml-auto flex items-center gap-x-4 lg:gap-x-6">
@@ -22,6 +23,8 @@ const UserBlock = () => (
       showName={true}
       appearance={{ variables: { colorText: "white" } }}
     />
+
+    <div><ThemeSwitch /></div>
   </div>
 );
 
