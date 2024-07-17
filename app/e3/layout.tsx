@@ -4,8 +4,8 @@ import React from 'react'
 const BaseLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <div className="min-h-full bg-gray-50 dark:bg-slate-900 h-screen w-full p-6 transition-colors duration-500 ease-in-out">
-        <div className="bg-astral-800 dark:bg-astral-800 pb-32">
+      <div className="min-h-full bg-gray-50 dark:bg-slate-950 h-screen w-full transition-colors duration-500 ease-in-out">
+        <div className="bg-astral-800 dark:bg-slate-900 pb-32">
           <Navigation />
         </div>
 

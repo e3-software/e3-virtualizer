@@ -9,7 +9,7 @@ import { NavButtons, NavButtonsMobile } from "./navButtons";
  * @returns
  */
 const Navigation = () => (
-  <Disclosure as="nav" className="bg-astral-800">
+  <Disclosure as="nav" className="bg-astral-800 dark:bg-slate-900">
     {({ open }) => (
       <>
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
