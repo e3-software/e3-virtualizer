@@ -24,7 +24,9 @@ const UserBlock = () => (
       appearance={{ variables: { colorText: "white" } }}
     />
 
-    <div><ThemeSwitch /></div>
+    <div>
+      <ThemeSwitch />
+    </div>
   </div>
 );
 
