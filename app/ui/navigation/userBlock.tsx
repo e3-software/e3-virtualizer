@@ -2,7 +2,7 @@ import { UserButton } from "@clerk/nextjs";
 import { BellIcon } from "@heroicons/react/24/outline";
 import ThemeSwitch from "../themeSwitch";
 
-const UserBlock = () => (
+const UserBlock = ({ setTheme }: { setTheme: Function }) => (
   <div className="ml-auto flex items-center gap-x-4 lg:gap-x-6">
     <button
       type="button"
@@ -25,7 +25,7 @@ const UserBlock = () => (
     />
 
     <div>
-      <ThemeSwitch />
+      <ThemeSwitch setTheme={setTheme} />
     </div>
   </div>
 );

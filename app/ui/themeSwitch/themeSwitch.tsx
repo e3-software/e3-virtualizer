@@ -3,26 +3,23 @@
 import { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
 import { SunIcon } from "@heroicons/react/24/solid";
+import { updateTheme } from "@/app/lib/actions/theme";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-function ThemeSwitch() {
+function ThemeSwitch({ setTheme }: { setTheme: Function }) {
   // fix this. use use effect to fetch the theme
   const [enabled, setEnabled] = useState(false);
 
-  // useEffect();
-
   const handleThemeChange = (enabled: boolean) => {
     setEnabled(!enabled);
-    fetch("/api/theme", {
-      method: "POST",
-      body: JSON.stringify({
-        theme: enabled ? "light" : "dark",
-      }),
+    updateTheme({
+      theme: enabled ? "light" : "dark",
     });
     setEnabled(enabled);
+    setTheme(enabled ? "light" : "dark");
   };
 
   return (

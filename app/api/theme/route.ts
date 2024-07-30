@@ -1,14 +1,22 @@
 import { getAuth, clerkClient } from "@clerk/nextjs/server";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-export const POST = async (req: Request, res: Response) => {
+type ResponseData = {
+  message: string;
+};
+
+export const POST = async (
+  req: NextRequest,
+  res: NextResponse<ResponseData>,
+) => {
   const { userId, sessionClaims } = getAuth(req);
 
+  console.log(res);
   if (!userId) return;
 
-  // const data = await req.json();
+  const data = await req.json();
 
-  console.log(req);
   //   try {
   //     await clerkClient.users.updateUserMetadata(userId, {
   //       publicMetadata: {
@@ -19,5 +27,5 @@ export const POST = async (req: Request, res: Response) => {
   //   } catch (exception: any) {
   //     throw new Error("Error setting user metadata");
   //   }
-  return res.status(200).json({});
+  return res.status(200).json({ message: "ok" });
 };
