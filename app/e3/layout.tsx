@@ -1,9 +1,12 @@
+'use client';
+
 import Navigation from "@/app/ui/navigation";
 import React from 'react'
 
 const BaseLayout = ({ children }: { children: React.ReactNode }) => {
+  console.log('window', localStorage.getItem('theme'))
   return (
-    <>
+    <div className={`${localStorage.getItem('theme')}`}>
       <div className="min-h-full bg-gray-50 dark:bg-slate-950 h-screen w-full transition-colors duration-500 ease-in-out">
         <div className="bg-astral-800 dark:bg-slate-900 pb-32">
           <Navigation />
@@ -15,7 +18,7 @@ const BaseLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </main>
       </div>
-    </>
+    </div>
   );
 };
 
