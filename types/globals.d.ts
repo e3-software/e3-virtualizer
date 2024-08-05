@@ -9,6 +9,7 @@ declare global {
       isAdmin?: boolean;
       appOrgId?: number;
       appUserId?: number;
+      theme?: string;
     };
   }
 
