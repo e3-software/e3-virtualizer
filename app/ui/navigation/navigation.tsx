@@ -8,8 +8,8 @@ import { NavButtons, NavButtonsMobile } from "./navButtons";
  * @param param Navigation component for main dashboard layout
  * @returns
  */
-const Navigation = () => (
-  <Disclosure as="nav" className="bg-astral-800">
+const Navigation = ({ setTheme }: { setTheme: Function }) => (
+  <Disclosure as="nav" className="bg-astral-800 dark:bg-slate-900">
     {({ open }) => (
       <>
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -17,7 +17,7 @@ const Navigation = () => (
             <div className="flex h-16 items-center justify-between px-4 sm:px-0">
               <NavButtons />
               <div className="hidden md:block">
-                <UserBlock />
+                <UserBlock setTheme={setTheme} />
               </div>
               <div className="-mr-2 flex md:hidden">
                 {/* Mobile menu button */}
@@ -38,7 +38,7 @@ const Navigation = () => (
         <Disclosure.Panel className="border-b border-astral-700 md:hidden">
           <NavButtonsMobile />
           <div className="flex p-10 border-t border-astral-700 pb-3 pt-4">
-            <UserBlock />
+            <UserBlock setTheme={setTheme} />
           </div>
         </Disclosure.Panel>
       </>

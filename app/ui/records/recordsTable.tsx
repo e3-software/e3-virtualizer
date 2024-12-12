@@ -9,42 +9,42 @@ const AddressTable = ({ records }: IRecordsTable) => {
 
   return (
     <table className="min-w-full divide-y divide-gray-300">
-      <thead className="bg-gray-50">
+      <thead className="bg-gray-50 dark:bg-slate-500">
         <tr>
           <th></th>
           <th
             scope="col"
-            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 sm:pl-6"
           >
             Name
           </th>
           <th
             scope="col"
-            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+            className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-300 sm:pl-6"
           >
             Address
           </th>
           <th
             scope="col"
-            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300"
           >
             City
           </th>
           <th
             scope="col"
-            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300"
           >
             State
           </th>
           <th
             scope="col"
-            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300"
           >
             Zip
           </th>
           <th
             scope="col"
-            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-300"
           >
             Tags
           </th>
